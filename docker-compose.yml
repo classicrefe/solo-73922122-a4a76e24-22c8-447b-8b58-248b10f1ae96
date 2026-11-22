@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    image: skyzip-fetch:latest
+    ports:
+      - "8000:8000"
+    environment:
+      DATA_DIR: /data
+    volumes:
+      # Source packages are dropped into ./data/sources on the host;
+      # SQLite (manifest + index) lives in ./data as well.
+      - ./data:/data
+    restart: unless-stopped
